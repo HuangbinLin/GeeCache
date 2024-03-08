@@ -1,6 +1,7 @@
 package lru
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
@@ -14,6 +15,7 @@ func (d String) Len() int {
 func TestGet(t *testing.T) {
 	lru := New(int64(0), nil)
 	lru.Add("key1", String("1234"))
+	fmt.Println(lru.maxBytes)
 	if v, ok := lru.Get("key1"); !ok || string(v.(String)) != "1234" {
 		t.Fatalf("cache hit key1=1234 failed")
 	}
